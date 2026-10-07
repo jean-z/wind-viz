@@ -1,0 +1,88 @@
+/* 风之镜 —— 系列统一深空玻璃风 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  background: #01040a;
+  color: #d7ecf7;
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 双层画布 ---------- */
+#globe-wrap { position: fixed; inset: 0; cursor: grab; }
+#globe-wrap:active { cursor: grabbing; }
+#globe-base, #globe-trail, #globe-track {
+  position: fixed; inset: 0;
+  width: 100vw; height: 100vh;
+}
+#globe-base { z-index: 0; }
+#globe-trail { z-index: 1; }
+#globe-track { z-index: 2; pointer-events: none; }
+
+/* ---------- 左上信息面板 ---------- */
+#hud {
+  position: fixed; top: 16px; left: 16px; z-index: 5;
+  width: min(320px, calc(100vw - 32px));
+  padding: 16px 18px 14px;
+  border-radius: 14px;
+  background: rgba(2, 12, 24, .55);
+  border: 1px solid rgba(140, 220, 255, .16);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .4);
+}
+#hud h1 {
+  font-size: 17px; font-weight: 800; letter-spacing: .14em; color: #bfeaff;
+  margin-bottom: 4px; text-shadow: 0 0 16px rgba(120, 210, 255, .35);
+}
+#hud .sub { font-size: 11px; letter-spacing: .2em; color: rgba(160, 205, 226, .6); margin-bottom: 12px; }
+.hud-grid { display: grid; grid-template-columns: auto 1fr; gap: 5px 12px; font-size: 12px; align-items: baseline; }
+.hud-grid a { color: #9fdcff; }
+.k { color: rgba(160, 205, 226, .7); font-size: 11px; letter-spacing: .18em; }
+.hud-note { margin-top: 10px; font-size: 10.5px; line-height: 1.6; color: rgba(160, 205, 226, .45); }
+
+/* ---------- 风速色标 ---------- */
+#legend {
+  position: fixed; left: 16px; bottom: 76px; z-index: 5;
+  width: min(300px, calc(100vw - 32px));
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10.5px; color: rgba(190, 220, 236, .7);
+  font-variant-numeric: tabular-nums;
+}
+#legend .bar {
+  flex: 1; height: 8px; border-radius: 4px;
+  background: linear-gradient(90deg, #2c5f8a 0%, #3b9e9e 11%, #8fd14f 22%, #f2d048 40%, #f2803a 62%, #e83a3a 100%);
+  box-shadow: 0 0 12px rgba(120, 210, 255, .2);
+}
+
+/* ---------- 底部控制条 ---------- */
+#controls {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+  z-index: 5; display: flex; align-items: center; gap: 7px;
+  padding: 9px 12px; border-radius: 18px;
+  background: rgba(2, 12, 24, .58);
+  border: 1px solid rgba(140, 220, 255, .18);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .45);
+  max-width: calc(100vw - 24px); flex-wrap: wrap; justify-content: center;
+}
+.ctl {
+  cursor: pointer; font: inherit; font-size: 12.5px;
+  color: #bfeaff; letter-spacing: .04em;
+  background: rgba(159, 220, 255, .07);
+  border: 1px solid rgba(159, 220, 255, .28);
+  border-radius: 9px; padding: 6px 12px;
+  transition: background .25s, box-shadow .25s;
+  white-space: nowrap;
+}
+.ctl:hover { background: rgba(159, 220, 255, .16); }
+.ctl.on { background: rgba(159, 220, 255, .26); box-shadow: 0 0 14px rgba(159, 220, 255, .4); }
+.ctl.typhoon { color: #ffd27a; border-color: rgba(255, 210, 122, .4); }
+.ctl.typhoon.on { background: rgba(255, 210, 122, .2); box-shadow: 0 0 16px rgba(255, 190, 80, .4); }
+.sep { width: 1px; height: 20px; background: rgba(140, 220, 255, .18); }
+
+@media (max-width: 720px) {
+  #hud { width: calc(100vw - 24px); top: 10px; left: 12px; padding: 12px 14px; }
+}

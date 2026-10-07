@@ -1,0 +1,22 @@
+{
+  "name": "wind-viz",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "风之镜 Wind Mirror —— 全球风场粒子流可视化（nullschool 风格，React 19 + Vite 7 + 2D Canvas）",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.1.0"
+  }
+}
