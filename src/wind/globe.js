@@ -98,7 +98,9 @@ export class WindGlobe {
     if (this.track) this.track.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.w = w; this.h = h;
     this.R = Math.min(w, h) * 0.42 * this.scale;
-    this.cx = w / 2; this.cy = h / 2;
+    this.cx = w / 2;
+    // 移动端：底部控制条占据下方空间，球体重心上移
+    this.cy = h * (w <= 720 ? 0.42 : 0.5);
     this.viewDirty = true;
   }
 
